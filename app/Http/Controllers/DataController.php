@@ -22,7 +22,7 @@ class DataController extends Controller
     public function store(Request $request, $id)
     {
         //validate data
-        echo $request->password;
+        // echo $request->password;
         $validator = Validator::make($request->all(), [
             'username'     => 'required|unique:users',
             'customer_id'   => 'required',

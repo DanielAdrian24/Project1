@@ -23,31 +23,31 @@ Route::post('/login', 'AuthController@login');
 Route::get('/user', 'AuthController@user');
 // Users
 Route::get('/v1/user', 'DataController@index');
-Route::post('/v1/createuser/{id?}','DataController@store');
-Route::get('/v1/getupdateid/{id?}', 'DataController@show');
-Route::post('/v1/updateuser/{id?}', 'DataController@update');
-Route::delete('/v1/getid/{id?}', 'DataController@destroy');
+Route::middleware('auth:api')->post('/v1/createuser/{id?}','DataController@store');
+Route::middleware('auth:api')->get('/v1/getupdateid/{id?}', 'DataController@show');
+Route::middleware('auth:api')->post('/v1/updateuser/{id?}', 'DataController@update');
+Route::middleware('auth:api')->delete('/v1/getid/{id?}', 'DataController@destroy');
 // Roles
-Route::post('/v1/createroles','RoleController@storerole');
-Route::get('/v1/roles', 'RoleController@indexroles');
-Route::get('/v1/getupdateidrole/{id?}', 'RoleController@showrole');
-Route::post('/v1/updaterole/{id?}', 'RoleController@updaterole');
-Route::delete('/v1/deleterole/{id?}', 'RoleController@destroyrole');
+Route::middleware('auth:api')->post('/v1/createroles','RoleController@storerole');
+Route::middleware('auth:api')->get('/v1/roles', 'RoleController@indexroles');
+Route::middleware('auth:api')->get('/v1/getupdateidrole/{id?}', 'RoleController@showrole');
+Route::middleware('auth:api')->post('/v1/updaterole/{id?}', 'RoleController@updaterole');
+Route::middleware('auth:api')->delete('/v1/deleterole/{id?}', 'RoleController@destroyrole');
 // Customers
-Route::post('/v1/createcustomers/{id?}','CustomersController@store');
-Route::get('/v1/customers', 'CustomersController@index');
+Route::middleware('auth:api')->post('/v1/createcustomers/{id?}','CustomersController@store');
+Route::middleware('auth:api')->get('/v1/customers', 'CustomersController@index');
 Route::get('/v1/getupdateidcustomers/{id?}', 'CustomersController@show');
-Route::post('/v1/updatecustomers/{id?}', 'CustomersController@update');
-Route::delete('/v1/deletecustomers/{id?}', 'CustomersController@destroy');
+Route::middleware('auth:api')->post('/v1/updatecustomers/{id?}', 'CustomersController@update');
+Route::middleware('auth:api')->delete('/v1/deletecustomers/{id?}', 'CustomersController@destroy');
 // Menus
-Route::post('/v1/createmenus/{id?}','MenuController@store');
-Route::get('/v1/menus', 'MenuController@index');
-Route::get('/v1/getupdateidmenus/{id?}', 'MenuController@show');
-Route::post('/v1/updatemenus/{id?}', 'MenuController@update');
-Route::delete('/v1/deletemenus/{id?}', 'MenuController@destroy');
+Route::middleware('auth:api')->post('/v1/createmenus/{id?}','MenuController@store');
+Route::middleware('auth:api')->get('/v1/menus', 'MenuController@index');
+Route::middleware('auth:api')->get('/v1/getupdateidmenus/{id?}', 'MenuController@show');
+Route::middleware('auth:api')->post('/v1/updatemenus/{id?}', 'MenuController@update');
+Route::middleware('auth:api')->delete('/v1/deletemenus/{id?}', 'MenuController@destroy');
 // Menu Details
-Route::post('/v1/createmenudetails/{id?}','MenuDetailController@store');
-Route::get('/v1/menudetails', 'MenuDetailController@index');
-Route::get('/v1/getupdateidmenudetails/{id?}', 'MenuDetailController@show');
-Route::post('/v1/updatemenudetails/{id?}', 'MenuDetailController@update');
-Route::delete('/v1/deletemenudetails/{id?}', 'MenuDetailController@destroy');
+Route::middleware('auth:api')->post('/v1/createmenudetails/{id?}','MenuDetailController@store');
+Route::middleware('auth:api')->get('/v1/menudetails', 'MenuDetailController@index');
+Route::middleware('auth:api')->get('/v1/getupdateidmenudetails/{id?}', 'MenuDetailController@show');
+Route::middleware('auth:api')->post('/v1/updatemenudetails/{id?}', 'MenuDetailController@update');
+Route::middleware('auth:api')->delete('/v1/deletemenudetails/{id?}', 'MenuDetailController@destroy');

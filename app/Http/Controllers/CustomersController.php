@@ -160,7 +160,6 @@ class CustomersController extends Controller
     public function show($id)
     {
         $post = DB::table('sys_customers')->whereId($id)->first();
-        echo "masok";
         if ($post) {
             return response()->json([
                 'success' => true,
