@@ -11,7 +11,7 @@ class DataController extends Controller
 {
     public function index()
     {
-        $user = user::where('id', '!=' , 1)->get();
+        $user = user::where('username', '!=' , 'admin')->get();
         return response([
             'success' => true,
             'message' => 'List Semua User',
