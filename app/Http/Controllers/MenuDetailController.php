@@ -27,7 +27,7 @@ class MenuDetailController extends Controller
             'menu_detail_name'     => 'required',
             'menu_detail_desc'     => 'required',
             'active_flag' => 'required',
-            'seq' => 'required'
+            'seq' => 'required|unique:sys_menus_details'
         ],
             [
                 'menu_detail_name.required' => 'Masukkan Nama Menu !',

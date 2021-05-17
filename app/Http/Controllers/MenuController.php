@@ -26,7 +26,7 @@ class MenuController extends Controller
             'menu_name'     => 'required',
             'menu_desc'     => 'required',
             'role_id'   => 'required',
-            'seq' => 'required',
+            'seq' => 'required|unique:sys_menus',
             'active_flag' => 'required',
             'is_detail' => 'required'
         ],

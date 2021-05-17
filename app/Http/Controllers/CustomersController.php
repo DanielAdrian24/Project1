@@ -70,6 +70,7 @@ class CustomersController extends Controller
                 'attribute5' => $request->input('attribute5'),
                 'active_flag' => $request->input('active_flag'),
                 'created_by' => $id,
+                'updated_by' => $id,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ]);
