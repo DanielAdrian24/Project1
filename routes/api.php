@@ -51,3 +51,15 @@ Route::middleware('auth:api')->get('/v1/menudetails', 'MenuDetailController@inde
 Route::middleware('auth:api')->get('/v1/getupdateidmenudetails/{id?}', 'MenuDetailController@show');
 Route::middleware('auth:api')->post('/v1/updatemenudetails/{id?}', 'MenuDetailController@update');
 Route::middleware('auth:api')->delete('/v1/deletemenudetails/{id?}', 'MenuDetailController@destroy');
+//Listing Kwt
+Route::post('/listingkwt','ListingKwtController@index');
+
+// TrxPage
+Route::get('/trxpage','TrxPageController@index');
+Route::get('/dtltrxpage/{id?}','TrxPageController@getBupotDetail');
+Route::get('/dtlKwtpage/{id?}','TrxPageController@getListingkwtDetail');
+Route::post('/updatestatusbupotsubmit/{id?}','TrxPageController@updateStatusBupotSubmit');
+Route::post('/updatestatusbupotcancel/{id?}','TrxPageController@updateStatusBupotCancel');
+Route::post('/inserttemporary','TrxPageController@insertTemporary');
+Route::get('/getkwtterdaftar','TrxPageController@getKwtterdaftar');
+Route::post('/inputinquiry','TrxPageController@store');

@@ -84,8 +84,8 @@ class MenuDetailController extends Controller
             'seq' => 'required'
         ],
             [
-                'menu_detail_name.required' => 'Masukkan Nama Menu !',
-                'menu_detail_desc.required' => 'Masukkan Deskripsi Menu !',
+                'menu_detail_name.required' => 'Masukkan Nama Menu Detail!',
+                'menu_detail_desc.required' => 'Masukkan Deskripsi Menu Detail!',
                 'active_flag.required' => 'Masukkan Role Id !',
                 'seq.required' => 'Masukkan Seq !',
             ]

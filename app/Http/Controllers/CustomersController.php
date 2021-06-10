@@ -10,7 +10,7 @@ class CustomersController extends Controller
 {
     public function index()
     {
-        $user =DB::table('sys_customers')->get();
+        $user =DB::table('sys_customers')->get()->toArray();
         return response([
             'success' => true,
             'message' => 'List Semua User',
@@ -94,7 +94,7 @@ class CustomersController extends Controller
     {
         //validate data
         $validator = Validator::make($request->all(), [
-            'customer_number'     => 'required|',
+            'customer_number'     => 'required',
             'customer_name'   => 'required',
             'description' => 'required',
             'email' => 'required',

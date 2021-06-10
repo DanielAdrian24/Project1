@@ -18,6 +18,10 @@ class RoleController extends Controller
         ], 200);
     }
 
+    // public function getRole(){
+    //     $wcss = DB::table('sys_roles')->pluck('id');
+    // }
+
     public function storerole(Request $request)
     {
         //validate data
@@ -68,7 +72,7 @@ class RoleController extends Controller
         //validate data
         // echo "masok";
         $validator = Validator::make($request->all(), [
-            'role_name'     => 'required|unique:sys_roles',
+            'role_name'     => 'required',
             'role_desc'   => 'required'
         ],
             [
