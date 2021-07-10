@@ -10,7 +10,7 @@ class MenuDetailController extends Controller
 {
     public function index()
     {
-        $menu = DB::select('select a.menu_detail_id,a.menu_detail_name,a.menu_detail_desc,a.active_flag,a.seq,a.created_by,a.last_update_by,a.created_at,a.updated_at from sys_menus_details as A, sys_menus AS B where a.menu_detail_id = b.menu_id and b.is_detail = "Y"');
+        $menu = DB::select('select a.menu_id,a.menu_detail_id,a.menu_detail_name,a.menu_detail_desc,a.active_flag,a.seq,a.created_by,a.last_update_by,a.created_at,a.updated_at from sys_menus_details as A, sys_menus AS B where a.menu_id = b.menu_id and b.is_detail = "Y"');
         return response([
             'success' => true,
             'message' => 'List Semua Menu',
@@ -23,7 +23,6 @@ class MenuDetailController extends Controller
         //validate data
         // echo $request->role_id;
         $validator = Validator::make($request->all(), [
-            'menu_detail_id'     => 'required',
             'menu_detail_name'     => 'required',
             'menu_detail_desc'     => 'required',
             'active_flag' => 'required',
@@ -48,7 +47,7 @@ class MenuDetailController extends Controller
         } else {
 
             $User = DB::table('sys_menus_details')->insert([
-                'menu_detail_id'     => $request->input('menu_detail_id'),
+                'menu_id'     => $request->input('menu_id'),
                 'menu_detail_name'     => $request->input('menu_detail_name'),
                 'menu_detail_desc'     => $request->input('menu_detail_desc'),
                 'active_flag'   => $request->input('active_flag'),
@@ -76,7 +75,6 @@ class MenuDetailController extends Controller
 
     public function update(Request $request ,$id)
     {
-        //validate data
         $validator = Validator::make($request->all(), [
             'menu_detail_name'     => 'required',
             'menu_detail_desc'     => 'required',
@@ -86,7 +84,7 @@ class MenuDetailController extends Controller
             [
                 'menu_detail_name.required' => 'Masukkan Nama Menu Detail!',
                 'menu_detail_desc.required' => 'Masukkan Deskripsi Menu Detail!',
-                'active_flag.required' => 'Masukkan Role Id !',
+                'active_flag.required' => 'Masukkan Flag !',
                 'seq.required' => 'Masukkan Seq !',
             ]
         );
@@ -102,7 +100,6 @@ class MenuDetailController extends Controller
         } else {
             
             $User = DB::table('sys_menus_details')->where('menu_detail_id',$request->id)->update([
-                'menu_detail_id'     => $request->input('menu_detail_id'),
                 'menu_detail_name'     => $request->input('menu_detail_name'),
                 'menu_detail_desc'     => $request->input('menu_detail_desc'),
                 'active_flag'   => $request->input('active_flag'),
@@ -137,7 +134,6 @@ class MenuDetailController extends Controller
                 'data'    => $post
             ], 200);
         } else {
-            echo "Masok";
             return response()->json([
                 'success' => false,
                 'message' => 'Post Tidak Ditemukan!',
@@ -162,5 +158,15 @@ class MenuDetailController extends Controller
             ], 500);
         }
 
+    }
+
+    public function getMenu($id){
+        $menu = DB::select('select b.menu_detail_name, b.menu_detail_desc from sys_menus as A, sys_menus_details as B where a.menu_id=b.menu_id and a.role_id ='.$id.' order by b.seq ASC');
+
+        return response([
+            'success' => true,
+            'message' => 'List Semua Menu',
+            'data' => $menu
+        ], 200);
     }
 }

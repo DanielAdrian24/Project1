@@ -39,27 +39,44 @@ Route::middleware('auth:api')->get('/v1/customers', 'CustomersController@index')
 Route::get('/v1/getupdateidcustomers/{id?}', 'CustomersController@show');
 Route::middleware('auth:api')->post('/v1/updatecustomers/{id?}', 'CustomersController@update');
 Route::middleware('auth:api')->delete('/v1/deletecustomers/{id?}', 'CustomersController@destroy');
+Route::get('/getcustnumberandname/{id?}','CustomersController@getCustnumberandName');
 // Menus
 Route::middleware('auth:api')->post('/v1/createmenus/{id?}','MenuController@store');
 Route::middleware('auth:api')->get('/v1/menus', 'MenuController@index');
 Route::middleware('auth:api')->get('/v1/getupdateidmenus/{id?}', 'MenuController@show');
 Route::middleware('auth:api')->post('/v1/updatemenus/{id?}', 'MenuController@update');
 Route::middleware('auth:api')->delete('/v1/deletemenus/{id?}', 'MenuController@destroy');
+
 // Menu Details
 Route::middleware('auth:api')->post('/v1/createmenudetails/{id?}','MenuDetailController@store');
 Route::middleware('auth:api')->get('/v1/menudetails', 'MenuDetailController@index');
 Route::middleware('auth:api')->get('/v1/getupdateidmenudetails/{id?}', 'MenuDetailController@show');
 Route::middleware('auth:api')->post('/v1/updatemenudetails/{id?}', 'MenuDetailController@update');
 Route::middleware('auth:api')->delete('/v1/deletemenudetails/{id?}', 'MenuDetailController@destroy');
+Route::get('/v1/getmenu/{id?}','MenuDetailController@getMenu');
 //Listing Kwt
 Route::post('/listingkwt','ListingKwtController@index');
 
 // TrxPage
-Route::get('/trxpage','TrxPageController@index');
+Route::get('/trxpage/{id?}','TrxPageController@index');
 Route::get('/dtltrxpage/{id?}','TrxPageController@getBupotDetail');
-Route::get('/dtlKwtpage/{id?}','TrxPageController@getListingkwtDetail');
+Route::get('/dtlKwtpage/{id?}/{custid?}','TrxPageController@getListingkwtDetail');
+Route::get('/dtlKwtpageValidator/{id?}','TrxPageController@getListingkwtDetailValidator');
 Route::post('/updatestatusbupotsubmit/{id?}','TrxPageController@updateStatusBupotSubmit');
 Route::post('/updatestatusbupotcancel/{id?}','TrxPageController@updateStatusBupotCancel');
 Route::post('/inserttemporary','TrxPageController@insertTemporary');
 Route::get('/getkwtterdaftar','TrxPageController@getKwtterdaftar');
 Route::post('/inputinquiry','TrxPageController@store');
+Route::post('/searchdata','TrxPageController@cariData');
+Route::get('/getkwtarray/{id?}/{custid?}','TrxPageController@getKwtArray');
+
+// TrxPageKasir
+Route::get('/trxpagekasir','TrxPageKasirController@index');
+Route::post('/searchdatakasir','TrxPageKasirController@cariData');
+
+// TrxPageValidator
+Route::get('/trxpagevalidator','TrxPageValidatorController@index');
+Route::post('/searchdatavalidator','TrxPageValidatorController@cariData');
+Route::post('/validasidata','TrxPageValidatorController@validasiData');
+Route::post('/tolakdata','TrxPageValidatorController@tolakData');
+

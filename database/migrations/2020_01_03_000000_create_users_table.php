@@ -29,6 +29,17 @@ class CreateUsersTable extends Migration
             $table->foreign('customer_id')->references('id')->on('sys_customers');
             $table->foreign('role_id')->references('id')->on('sys_roles');
         });
+        DB::table('users')->insert([
+            'username'     => 'admin',
+            'password'     => bcrypt('password'),
+            'email'     => 'admin@admin.com',
+            'customer_id'   => 1,
+            'role_id' => 1,
+            'active_flag'     => 'Y',
+            'last_update_by' => 1,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
     }
 
     /**

@@ -18,6 +18,10 @@ class SysRoles extends Migration
             $table->string('role_name',100);
             $table->string('role_desc',255);
         });
+        DB::table('sys_roles')->insert([
+            'role_name'     => 'Admin',
+            'role_desc'     => 'Admin Desc'
+        ]);
     }
 
     /**

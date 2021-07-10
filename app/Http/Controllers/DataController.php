@@ -11,7 +11,12 @@ class DataController extends Controller
 {
     public function index()
     {
-        $user = user::where('username', '!=' , 'admin')->get();
+        // $user = user::where('username', '!=' , 'admin')->get();
+        $user = DB::select('select A.id,
+        A.username,C.customer_name,A.email,A.email_verified_at,A.active_flag,B.role_name,A.created_at,A.updated_at
+        from users as A ,sys_roles as B ,sys_customers as C
+        where a.customer_id=c.id and b.id=a.role_id');
+        // print_r($user);
         return response([
             'success' => true,
             'message' => 'List Semua User',
@@ -33,10 +38,10 @@ class DataController extends Controller
         ],
             [
                 'username.required' => 'Masukkan Username !',
-                'customer_id.required' => 'Masukkan Customer Id !',
+                'customer_id.required' => 'Masukkan Customer !',
                 'email.required' => 'Masukkan Email !',
                 'active_flag.required' => 'Masukkan Active Flag !',
-                'role_id.required' => 'Masukkan Role ID !',
+                'role_id.required' => 'Masukkan Role !',
                 'password.required' => 'Masukkan password !',
             ]
         );
@@ -63,7 +68,7 @@ class DataController extends Controller
                 'updated_at' => date('Y-m-d H:i:s')
             ]);
 
-
+            
             if ($User) {
                 return response()->json([
                     'success' => true,
@@ -92,10 +97,10 @@ class DataController extends Controller
             [
                 'username.required' => 'Masukkan Username !',
                 'password.required' => 'Masukkan password !',
-                'customer_id.required' => 'Masukkan Customer Id !',
+                'customer_id.required' => 'Masukkan Customer !',
                 'email.required' => 'Masukkan Email !',
                 'active_flag.required' => 'Masukkan Active Flag !',
-                'role_id.required' => 'Masukkan Role ID !',
+                'role_id.required' => 'Masukkan Role !',
             ]
         );
 

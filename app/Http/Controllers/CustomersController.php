@@ -193,4 +193,19 @@ class CustomersController extends Controller
         }
 
     }
+    public function getCustnumberandName($id){
+        $customer = DB::table('sys_customers')->select('customer_number','customer_name')->where('id',$id)->get();
+        if ($customer) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Data Customer',
+                'data' => $customer
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Data tidak dapat diambil',
+            ], 500);
+        }
+    }
 }

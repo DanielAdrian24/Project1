@@ -15,7 +15,7 @@ class BupotLines extends Migration
     {
         Schema::create('bupot_lines', function (Blueprint $table) {
             $table->unsignedBigInteger('bupot_id')->nullable();
-            $table->integer('bupot_line_id');
+            $table->id('bupot_line_id');
             $table->unsignedBigInteger('kwt_id')->nullable();
             $table->integer("created_by");
             $table->date("creation_date");

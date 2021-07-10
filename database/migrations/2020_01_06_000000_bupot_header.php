@@ -40,6 +40,8 @@ class BupotHeader extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('bupot_lines');
+        Schema::dropIfExists('bupot_header');
         //
     }
 }

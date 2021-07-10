@@ -20,6 +20,7 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'customer_id' => 1,
+            'role_id' => 1
         ]); 
         
         $credentials = $request->only('username', 'password');

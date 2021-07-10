@@ -14,7 +14,8 @@ class SysMenusDetails extends Migration
     public function up()
     {
         Schema::create('sys_menus_details', function (Blueprint $table) {
-            $table->unsignedBigInteger('menu_detail_id');
+            $table->id('menu_detail_id');
+            $table->unsignedBigInteger('menu_id');
             $table->string('menu_detail_name');
             $table->string('menu_detail_desc');
             $table->string('active_flag');
@@ -23,7 +24,7 @@ class SysMenusDetails extends Migration
             $table->integer("last_update_by")->nullable();
             $table->rememberToken();
             $table->timestamps();
-            $table->foreign('menu_detail_id')->references('menu_id')->on('sys_menus');
+            $table->foreign('menu_id')->references('menu_id')->on('sys_menus');
         });
     }
 
